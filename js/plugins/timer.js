@@ -16,16 +16,6 @@
  * @text Timer Color
  * @desc The color of the timer text in CSS format.
  * @default white
- * 
- * @param minutes
- * @text Minute(s)
- * @desc The minute(s) for the timer
- * @default 1
- * 
- * @param seconds
- * @text Second(s)
- * @desc The second(s) for the timer
- * @default 60
  *
  * @help This plugin displays a timer on the screen.
  */
@@ -63,10 +53,9 @@
         var width = 200;
         var height = this.fittingHeight(1);
         Window_Base.prototype.initialize.call(this, x, y, width, height);
-        this._seconds = 0;
         this._color = color;
+        this._seconds = 0;
         this.refresh();
-        this.update();
     };
 
     Window_TimerDisplay.prototype.update = function() {
@@ -80,17 +69,38 @@
     Window_TimerDisplay.prototype.refresh = function() {
         this.contents.clear();
         this.changeTextColor(this._color);
-        var minutes = Math.floor(this._seconds / 60);
-        var seconds = this._seconds % 60;
+        var seconds = $gameTimer.seconds();
+        var minutes = Math.floor(seconds / 60);
+        seconds = seconds % 60;
         var text = minutes.padZero(2) + ':' + seconds.padZero(2);
         this.drawText(text, 0, 0, this.contents.width, 'center');
-
-        console.log('Mins:', minutes);
-        console.log('Secs:', seconds);
     };
 
     Window_TimerDisplay.prototype.changeTextColor = function(color) {
         this.contents.textColor = color;
     };
 
+   // Override the default timer window's update method to hide it
+   Window_Timer.prototype.update = function() {
+    Window_Base.prototype.update.call(this);
+    this.visible = false; // Ensure the default timer window is hidden
+};
+
+// Override the start method of Game_Timer to ensure the default timer window is hidden
+var _Game_Timer_start = Game_Timer.prototype.start;
+Game_Timer.prototype.start = function(count) {
+    _Game_Timer_start.call(this, count);
+    if (SceneManager._scene instanceof Scene_Map && SceneManager._scene._timerWindow) {
+        SceneManager._scene._timerWindow.update();
+    }
+    if ($gameMap && $gameMap._interpreter) {
+        var scene = SceneManager._scene;
+        if (scene instanceof Scene_Map) {
+            scene._timerWindow.visible = true; // Ensure custom timer window is visible
+            if (scene._timerWindow) {
+                scene._timerWindow.refresh(); // Refresh custom timer window
+            }
+        }
+    }
+};
 })();
