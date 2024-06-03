@@ -16,6 +16,16 @@
  * @text Timer Color
  * @desc The color of the timer text in CSS format.
  * @default white
+ * 
+ * @param minutes
+ * @text Minute(s)
+ * @desc The minute(s) for the timer
+ * @default 1
+ * 
+ * @param seconds
+ * @text Second(s)
+ * @desc The second(s) for the timer
+ * @default 60
  *
  * @help This plugin displays a timer on the screen.
  */
@@ -74,6 +84,9 @@
         var seconds = this._seconds % 60;
         var text = minutes.padZero(2) + ':' + seconds.padZero(2);
         this.drawText(text, 0, 0, this.contents.width, 'center');
+
+        console.log('Mins:', minutes);
+        console.log('Secs:', seconds);
     };
 
     Window_TimerDisplay.prototype.changeTextColor = function(color) {
