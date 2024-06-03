@@ -80,27 +80,27 @@
         this.contents.textColor = color;
     };
 
-   // Override the default timer window's update method to hide it
-   Window_Timer.prototype.update = function() {
-    Window_Base.prototype.update.call(this);
-    this.visible = false; // Ensure the default timer window is hidden
-};
+    // Override the default timer window's update method to hide it
+    Window_Timer.prototype.update = function() {
+        Window_Base.prototype.update.call(this);
+        this.visible = false; // Ensure the default timer window is hidden
+    };
 
-// Override the start method of Game_Timer to ensure the default timer window is hidden
-var _Game_Timer_start = Game_Timer.prototype.start;
-Game_Timer.prototype.start = function(count) {
-    _Game_Timer_start.call(this, count);
-    if (SceneManager._scene instanceof Scene_Map && SceneManager._scene._timerWindow) {
-        SceneManager._scene._timerWindow.update();
-    }
-    if ($gameMap && $gameMap._interpreter) {
-        var scene = SceneManager._scene;
-        if (scene instanceof Scene_Map) {
-            scene._timerWindow.visible = true; // Ensure custom timer window is visible
-            if (scene._timerWindow) {
-                scene._timerWindow.refresh(); // Refresh custom timer window
+    // Override the start method of Game_Timer to ensure the default timer window is hidden
+    var _Game_Timer_start = Game_Timer.prototype.start;
+    Game_Timer.prototype.start = function(count) {
+        _Game_Timer_start.call(this, count);
+        if (SceneManager._scene instanceof Scene_Map && SceneManager._scene._timerWindow) {
+            SceneManager._scene._timerWindow.update();
+        }
+        if ($gameMap && $gameMap._interpreter) {
+            var scene = SceneManager._scene;
+            if (scene instanceof Scene_Map) {
+                scene._timerWindow.visible = true; // Ensure custom timer window is visible
+                if (scene._timerWindow) {
+                    scene._timerWindow.refresh(); // Refresh custom timer window
+                }
             }
         }
-    }
-};
+    };
 })();
