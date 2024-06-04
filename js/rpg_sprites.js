@@ -2013,13 +2013,14 @@ Sprite_Timer.prototype.createBitmap = function() {
     this.bitmap = new Bitmap(96, 48);
     this.bitmap.fontSize = 32;
 };
-
+/*
 Sprite_Timer.prototype.update = function() {
     Sprite.prototype.update.call(this);
     this.updateBitmap();
     this.updatePosition();
     this.updateVisibility();
 };
+*/
 
 Sprite_Timer.prototype.updateBitmap = function() {
     if (this._seconds !== $gameTimer.seconds()) {
