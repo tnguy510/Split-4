@@ -1,6 +1,6 @@
 [
 null,
-{"id":1,"list":[{"code":101,"indent":0,"parameters":["mc_face",0,0,2]},{"code":401,"indent":0,"parameters":["Hopefully I secured myself in this room..."]},{"code":230,"indent":0,"parameters":[30]},{"code":101,"indent":0,"parameters":["",0,0,2]},{"code":401,"indent":0,"parameters":["\\..\\..\\..\\..\\.."]},{"code":101,"indent":0,"parameters":["",0,0,2]},{"code":401,"indent":0,"parameters":["Did you blocked the front entrance?"]},{"code":111,"indent":0,"parameters":[0,5,1]},{"code":108,"indent":1,"parameters":["game over"]},{"code":0,"indent":1,"parameters":[]},{"code":412,"indent":0,"parameters":[]},{"code":101,"indent":0,"parameters":["",0,0,2]},{"code":401,"indent":0,"parameters":["Did you"]},{"code":0,"indent":0,"parameters":[]}],"name":"Lock down","switchId":1,"trigger":0},
+{"id":1,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"Lock down","switchId":1,"trigger":0},
 {"id":2,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0},
 {"id":3,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0},
 {"id":4,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0}
